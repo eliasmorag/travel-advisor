@@ -6,7 +6,13 @@ import { Rating } from "@material-ui/lab";
 
 import useStyles from "./map.styles";
 
-const Map = ({ coordinates, setCoordinates, setBounds, places }) => {
+const Map = ({
+  coordinates,
+  setCoordinates,
+  setBounds,
+  places,
+  setChildClicked,
+}) => {
   const classes = useStyles();
 
   // Set to false if larger than specified value
@@ -27,12 +33,13 @@ const Map = ({ coordinates, setCoordinates, setBounds, places }) => {
           setBounds({ ne: event.marginBounds.ne, sw: event.marginBounds.sw });
         }}
         onChildClick={(child) => {
-          console.log(child);
+          console.log({ child });
+          setChildClicked(child);
         }}
       >
         {places.length &&
           places
-            .filter((place) => place.latitude && place.longitude)
+            // .filter((place) => place.latitude && place.longitude)
             .map((place, i) => (
               <div
                 className={classes.markerContainer}
