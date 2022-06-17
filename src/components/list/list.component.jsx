@@ -35,7 +35,7 @@ const List = ({
 
   return (
     <div className={classes.container}>
-      <Typography variant="h4">
+      <Typography variant="h5">
         Restaurants, Hotels & Attractions around you
       </Typography>
       {isLoading ? (

@@ -1,4 +1,4 @@
-import { CssBaseline, Grid } from "@material-ui/core";
+import { Box, CssBaseline, Grid } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { getPlacesData } from "./api/travel-advisor-api";
 import "./App.css";
@@ -45,29 +45,35 @@ const App = () => {
   return (
     <>
       <CssBaseline />
-      <Header setCoordinates={setCoordinates} />
-      <Grid container spacing={3} style={{ width: "100%" }}>
-        <Grid item xs={12} md={4}>
-          <List
-            places={filteredPlaces.length ? filteredPlaces : places}
-            childClicked={childClicked}
-            isLoading={isLoading}
-            type={type}
-            setType={setType}
-            rating={rating}
-            setRating={setRating}
-          />
+      <Box height="100vh" display="flex" flexDirection="column">
+        <Header setCoordinates={setCoordinates} />
+        <Grid
+          container
+          spacing={3}
+          style={{ width: "100%", flexGrow: 1, margin: 0, minHeight: 0 }}
+        >
+          <Grid item xs={12} md={4} style={{ margin: 0, height: "100%" }}>
+            <List
+              places={filteredPlaces.length ? filteredPlaces : places}
+              childClicked={childClicked}
+              isLoading={isLoading}
+              type={type}
+              setType={setType}
+              rating={rating}
+              setRating={setRating}
+            />
+          </Grid>
+          <Grid item xs={12} md={8}>
+            <Map
+              setCoordinates={setCoordinates}
+              setBounds={setBounds}
+              coordinates={coordinates}
+              places={filteredPlaces.length ? filteredPlaces : places}
+              setChildClicked={setChildClicked}
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={8}>
-          <Map
-            setCoordinates={setCoordinates}
-            setBounds={setBounds}
-            coordinates={coordinates}
-            places={filteredPlaces.length ? filteredPlaces : places}
-            setChildClicked={setChildClicked}
-          />
-        </Grid>
-      </Grid>
+      </Box>
     </>
   );
 };

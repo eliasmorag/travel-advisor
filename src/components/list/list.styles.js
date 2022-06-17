@@ -16,13 +16,16 @@ export default makeStyles((theme) => ({
     alignItems: "center",
   },
   container: {
-    padding: "25px",
+    padding: "0 25px",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
   },
   marginBottom: {
     marginBottom: "30px",
   },
   list: {
-    height: "75vh",
-    overflow: "auto",
+    flexGrow: 1,
+    overflowY: "auto",
   },
 }));
